@@ -1,0 +1,97 @@
+﻿@model IEnumerable<HealthCareProject.Models.Doctor>
+@{
+
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Search</title>
+
+    <style>
+
+        #Firstbox {
+            float: left;
+            background-color: gainsboro;
+            width: 200px;
+            height: 280px;
+            padding-left: 50px;
+            margin-left: 270px;
+        }
+        #btnsubmit {
+            margin-left: 50px;
+            text-align: end;
+        }
+        .button {
+            background-color: #6374c4; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            margin-left: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align:center"> Doctor Details</h2>
+    @foreach (var item in Model)
+
+    {
+
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+
+            <div class="card-header"></div>
+
+            <div id="Firstbox">
+
+                <h2 class="card-title" style="color:cornflowerblue">@Html.DisplayFor(modelItem => item.DoctorName)</h2>
+
+                Specialisation: @Html.DisplayFor(modelItem => item.Specialization)
+
+                <div>Qualification:@Html.DisplayFor(modelItem => item.Qualification)</div>
+
+                <div>Experience:@Html.DisplayFor(modelItem => item.Experience) </div>
+
+                ShiftDetails:@Html.DisplayFor(modelItem => item.ShiftDetails)
+                @if (item.IsAvailable)
+                {
+
+                    <p style="color:green"> Available Today</p>
+
+                }
+
+                <div>Languages:@Html.DisplayFor(modelItem => item.Languages) </div>
+
+                <button type="submit" id="btnsubmit2" class=" button btn btn-primary">@Html.ActionLink("Book Appointment", "BookingSlot", "Employee", new { id = item.DoctorId }, null)</button>
+
+
+
+            </div>
+
+            <hr />
+
+        </div>
+
+    }
+
+</body>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+﻿@model HealthCareProject.Models.Login
+@{
+    ViewBag.Title = "Employee Login";
+}
+
+<h2>Employee Login</h2>
+
+
+@using (Html.BeginForm("Search","Doctor",FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(c => c.UserId)
+        @Html.TextBoxFor(c => c.UserId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.UserId, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Password)
+        @Html.PasswordFor(c => c.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Password, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        <input type="submit" name="cmdsubmit" value="Login" class=" btn-primary" />
+    </div>
+}

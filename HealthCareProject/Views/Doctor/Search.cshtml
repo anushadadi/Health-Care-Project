@@ -1,0 +1,33 @@
+﻿@model  HealthCareProject.Models.Doctor
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<div class="container">
+    @using (Html.BeginForm("SearchView", "Doctor",FormMethod.Post))
+    {
+        <div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.City)
+                @Html.DropDownListFor(c => c.City, ViewBag.City as SelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.City)
+            </div>
+
+        </div>
+        <div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Specialization)
+                @Html.DropDownListFor(c => c.Specialization, ViewBag.Specialization as SelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => c.Specialization)
+            </div>
+
+        </div>
+        <div class="form-group">
+            <input type="submit" name="cmdsubmit" value="search" class=" btn-primary" />
+        </div>
+    }
+</div>
+
+

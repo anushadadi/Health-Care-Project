@@ -18,10 +18,7 @@ namespace HealthCareProject.Controllers
 
         // GET: Doctor
         IDoctorInterface repository = new DoctorRepository();
-        //public DoctorController(IDoctorInterface repository)
-        //{
-        //    this.repository = repository;
-        //}
+        
         private ApplicationDbContext DbContext = new ApplicationDbContext();
         public DoctorController() {}
 

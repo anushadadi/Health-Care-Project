@@ -18,10 +18,10 @@
         #Firstbox {
             float: left;
             background-color: gainsboro;
-            width: 200px;
+            width: 240%;
             height: 280px;
             padding-left: 50px;
-            margin-left: 270px;
+            margin-left: 120px;
         }
         #btnsubmit {
             margin-left: 50px;
@@ -56,6 +56,7 @@
             <div id="Firstbox">
 
                 <h2 class="card-title" style="color:cornflowerblue">@Html.DisplayFor(modelItem => item.DoctorName)</h2>
+                <hr/>
 
                 Specialisation: @Html.DisplayFor(modelItem => item.Specialization)
 
@@ -66,7 +67,6 @@
                 ShiftDetails:@Html.DisplayFor(modelItem => item.ShiftDetails)
                 @if (item.IsAvailable)
                 {
-
                     <p style="color:green"> Available Today</p>
 
                 }

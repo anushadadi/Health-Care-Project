@@ -39,6 +39,7 @@ namespace HealthCareProject.Controllers
         {
 
             var LoginInDb = dbContext.Employees.SingleOrDefault(c => (c.EmailId == employeeLogin.UserId) || (c.SapId.ToString() == employeeLogin.UserId));
+            TempData["Id"] = LoginInDb.Id;
             if (LoginInDb != null)
             {
                 if (LoginInDb.Password == employeeLogin.Password)

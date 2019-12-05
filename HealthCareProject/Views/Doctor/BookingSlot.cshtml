@@ -19,17 +19,17 @@
 
     @Scripts.Render("~/bundles/modernizr")
 
-    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
 
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")"></script>
 
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
 
     <script type="text/javascript">
 
     $(function () {
 
-      $("#datepicker").datepicker({ minDate: 0, maxDate: "+3M +0D" });
+        $("#datepicker").datepicker({ minDate: 0, maxDate: "+3M +0D", dateFormat:"dd-mm-yy" });
 
     });
     </script>
@@ -96,26 +96,24 @@
     </div>
 
     <center>
-        @using (@Html.BeginForm("BookingDoctor","Doctor",FormMethod.Get))
+        @using (@Html.BeginForm("BookingSlot","Doctor",FormMethod.Post))
 
         {
             <h2>Booking Slot</h2>
 
             <p style="color:blue" id="hide"> Select Appointment Date and Time Slot </p>
 
-            <p>Date: <input type="text" id="datepicker" name="datepicker" autocomplete="off" /></p>
+            <p>Date: <input type="text" id="datepicker" name="datepicker" min="0" max="+3M" autocomplete="off" /></p>
 
             <p><h2>Time Slots</h2></p>
 
             for (DateTime x = Model.Start_Time; x <= Model.End_Time; x = x.AddMinutes(30))
 
             {
-                if (x.Hour <= 10)
-                {
                     <input type="submit" id="btn1" value=" @x.ToShortTimeString()-@x.AddMinutes(30).ToShortTimeString()"
                            name="time" onclick="disableButton(value)" />
                     
-                }
+                
             }
         }
 

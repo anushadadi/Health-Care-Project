@@ -71,6 +71,7 @@ namespace HealthCareProject.Controllers
             return Specialization;
 
         }
+       
 
         [HttpGet]
 
@@ -83,16 +84,21 @@ namespace HealthCareProject.Controllers
 
         }
        
-        [HttpGet]
-        public ActionResult BookingDoctor(Doctor doc,int id,string time)
+        [HttpPost]
+        public ActionResult BookingSlot(int id,string time,string datepicker)
 
         {
            
             var doctor = DbContext.Doctors.SingleOrDefault(m => m.DoctorId == id);
             ViewBag.Time = time;
+            ViewBag.Date = datepicker;
+            TempData["Time"] = time;
+            TempData["Date"] = datepicker;
+
             var d = new DoctorPatientViewModel
 
             {
+                DoctorId=doctor.DoctorId,
                 DoctorName = doctor.DoctorName,
 
                 Specialization = doctor.Specialization,
@@ -104,10 +110,27 @@ namespace HealthCareProject.Controllers
                 ShiftDetails = doctor.ShiftDetails,
 
                 Languages = doctor.Languages,
+                
             };
 
-            return View(d);
+            return View("BookingDoctor",d);
 
+        }
+        [HttpPost]
+        public ActionResult BookingDoctor(DoctorPatientViewModel ViewModel)
+        {
+            var employee = DbContext.Employees.ToList();
+            Appointment PatientDetails = new Appointment
+            {
+                SlotTime = Convert.ToDateTime(TempData["Time"]),
+                EmployeeId=Convert.ToInt16(TempData["Id"]),
+                AppointmentDate= Convert.ToDateTime(TempData["Date"]),
+                
+                AppointmentStatus=true,
+            };
+            DbContext.Appointments.Add(PatientDetails);
+            DbContext.SaveChanges();
+            return Content("Booked Successfully");
         }
 
     }

@@ -1,0 +1,32 @@
+﻿<!-- jQuery UI CSS Reference -->
+<link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+<!-- Required jQuery and jQuery UI Javascript references -->
+<script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.date-picker').datepicker({
+            minDate: 0, maxDate: "+3M +0D", dateFormat:dd-mm-yy
+        });
+    })
+</script>
+<center>
+    <h2>Book Your Slot</h2>
+    <table>
+        <tr>
+            <td>
+                @Html.TextBox("YourTextBox", "", new { @class = "date-picker" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="Morning Slot" id="btnSubmit" class="btn btn-outline-primary" />
+            </td>
+            <td></td>
+            <td>
+                <input type="submit" value="Evening Slot" id="btnSubmit" class="btn btn-outline-primary" />
+            </td>
+        </tr>
+    </table>
+</center>

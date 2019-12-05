@@ -32,6 +32,6 @@ namespace HealthCareProject.Models
         public DbSet<Login> Logins { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        //public DbSet<Appointments> Appointments { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
     }
 }

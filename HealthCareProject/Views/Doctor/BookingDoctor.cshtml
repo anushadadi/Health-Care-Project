@@ -18,7 +18,7 @@
 
     <script>
 
-      
+
 
     $(function () {
 
@@ -36,6 +36,7 @@
             padding-left: 50px;
             margin-left: 70px;
         }
+
         #Secondbox {
             float: right;
             /*background: #edc5cc;*/
@@ -45,10 +46,12 @@
             margin-right: 70px;
             font-size: large;
         }
+
         h1 {
             color: green;
             text-align: center;
         }
+
         p {
             text-align: center;
         }
@@ -67,15 +70,21 @@
 
         <br />
 
-        <h1> Confirm Appointment</h1>
+        <h1 style="color:blue"> Confirm Appointment</h1>
+        <br />
+
+        <h4 style="text-align:center">Appointment Date:@ViewBag.Date</h4>
+        <h4 style="text-align:center">Booking slot:@ViewBag.Time</h4>
 
         <div id="Firstbox">
 
-            <h2>Doctor Details:</h2>
+            <h3>Doctor Details:</h3>
 
             <h2 class="card-title" style="color:cornflowerblue">@Html.DisplayFor(modelItem => modelItem.DoctorName)</h2>
 
+
             <hr />
+            @Html.HiddenFor(modelItem => modelItem.Id)
 
             <b>Specialisation</b>: @Html.DisplayFor(modelItem => modelItem.Specialization)
 
@@ -92,9 +101,9 @@
         <div id="Secondbox">
 
             <h2>Patient Details:</h2>
-            <br/>
+            <br />
 
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("BookingDoctor", "Doctor",FormMethod.Post))
 
             {
 
@@ -157,11 +166,7 @@
     </div>
 
     }
-
-
-
-
-
 </body>
 
 </html>
+

@@ -1,0 +1,167 @@
+﻿@model HealthCareProject.ViewModel.DoctorPatientViewModel
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Booking Doctor</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+
+      
+
+    $(function () {
+
+      alert($("#btn").val(@Model.DoctorName);
+
+    });
+    </script>
+    <style>
+
+        #Firstbox {
+            float: left;
+            background: #aabbbb;
+            width: 40%;
+            height: 280px;
+            padding-left: 50px;
+            margin-left: 70px;
+        }
+        #Secondbox {
+            float: right;
+            /*background: #edc5cc;*/
+            width: 45%;
+            height: 500px;
+            padding-left: 50px;
+            margin-right: 70px;
+            font-size: large;
+        }
+        h1 {
+            color: green;
+            text-align: center;
+        }
+        p {
+            text-align: center;
+        }
+
+
+
+        /*body {
+            font-size: medium;
+        }*/
+    </style>
+
+</head>
+
+<body>
+    <div id="boxes">
+
+        <br />
+
+        <h1> Confirm Appointment</h1>
+
+        <div id="Firstbox">
+
+            <h2>Doctor Details:</h2>
+
+            <h2 class="card-title" style="color:cornflowerblue">@Html.DisplayFor(modelItem => modelItem.DoctorName)</h2>
+
+            <hr />
+
+            <b>Specialisation</b>: @Html.DisplayFor(modelItem => modelItem.Specialization)
+
+            <div><b>Qualification</b>:@Html.DisplayFor(modelItem => modelItem.Qualification)</div>
+
+            <div><b>Experience</b>:@Html.DisplayFor(modelItem => modelItem.Experience) </div>
+
+            <b>ShiftDetails</b>:@Html.DisplayFor(modelItem => modelItem.ShiftDetails)
+
+            <div><b>Languages</b>:@Html.DisplayFor(modelItem => modelItem.Languages) </div>
+
+        </div>
+
+        <div id="Secondbox">
+
+            <h2>Patient Details:</h2>
+            <br/>
+
+            @using (Html.BeginForm())
+
+            {
+
+                @Html.AntiForgeryToken()
+
+                <div class="form-group-lg">
+
+                    @Html.LabelFor(c => c.PatientName)<div></div>
+
+                    @Html.TextBoxFor(c => c.PatientName, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(c => c.PatientName, "", new { @class = "text-danger" })
+
+
+
+                </div>
+
+                <div class="form-group">
+
+                    @Html.LabelFor(c => c.Gender)<div></div>
+
+                    @Html.TextBoxFor(c => c.Gender, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(c => c.Gender, "", new { @class = "text-danger" })
+
+
+
+                </div>
+
+                <div class="form-group">
+
+                    @Html.LabelFor(c => c.Age)<div></div>
+
+                    @Html.TextBoxFor(c => c.Age, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(c => c.Age, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+
+                    @Html.LabelFor(c => c.MobileNumber)<div></div>
+
+                    @Html.TextBoxFor(c => c.MobileNumber, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(c => c.MobileNumber, "", new { @class = "text-danger" })
+
+
+
+                </div>
+                <div class="form-group">
+
+                    <input type="submit" id="btn" name="cmdsubmit" value="Confirm" class=" btn-primary" onclick="alert" />
+
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+
+    }
+
+
+
+
+
+</body>
+
+</html>

@@ -1,6 +1,7 @@
 ﻿using HealthCareProject.Interfaces;
 using HealthCareProject.Models;
 using HealthCareProject.Repositories;
+using HealthCareProject.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,9 +19,9 @@ namespace HealthCareProject.Controllers
 
         // GET: Doctor
         IDoctorInterface repository = new DoctorRepository();
-        
+
         private ApplicationDbContext DbContext = new ApplicationDbContext();
-        public DoctorController() {}
+        public DoctorController() { }
 
         [HttpGet]
         public ActionResult Search()
@@ -42,7 +43,7 @@ namespace HealthCareProject.Controllers
                 return Content("No Results Found");
             }
         }
-       
+
 
         [NonAction]
         public IEnumerable<SelectListItem> SelectCity()
@@ -70,6 +71,45 @@ namespace HealthCareProject.Controllers
             return Specialization;
 
         }
+
+        [HttpGet]
+
+        public ActionResult BookingSlot(int id)
+
+        {
+            var c = DbContext.Doctors.SingleOrDefault(d => d.DoctorId == id);
+
+            return View(c);
+
+        }
+       
+        [HttpGet]
+        public ActionResult BookingDoctor(Doctor doc,int id,string time)
+
+        {
+           
+            var doctor = DbContext.Doctors.SingleOrDefault(m => m.DoctorId == id);
+            ViewBag.Time = time;
+            var d = new DoctorPatientViewModel
+
+            {
+                DoctorName = doctor.DoctorName,
+
+                Specialization = doctor.Specialization,
+
+                Qualification = doctor.Qualification,
+
+                Experience = doctor.Experience,
+
+                ShiftDetails = doctor.ShiftDetails,
+
+                Languages = doctor.Languages,
+            };
+
+            return View(d);
+
+        }
+
     }
 }
 

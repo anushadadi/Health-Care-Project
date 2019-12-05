@@ -21,5 +21,10 @@ namespace HealthCareProject.Repositories
             var doctor = from r in dbContext.Doctors orderby r.DoctorName where (r.City == City && r.Specialization == Specialisation) select r;
             return doctor.ToList();
         }
+        public Doctor SearchById(int id)
+        {
+            var doctor = dbContext.Doctors.SingleOrDefault(c => c.DoctorId == id);
+            return doctor;
+        }
     }
 }
